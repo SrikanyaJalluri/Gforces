@@ -1,0 +1,63 @@
+@2020feature @core @critical
+Feature: It Should allow users to add new computers to the database for searching at a later date
+  As A product manager
+  I want frontend users to be able to update the database
+  So That I dont have to book time with a database administrator
+
+  @happypath
+  Scenario Outline: Verify that user can add new computer to the database                                      # NewComputer.feature:9
+    Given I navigate to the computer database app
+    When I select "Add a new computer"
+    Then I land in page with heading "Add a New Computer"
+    And add new computer with "<Computer Name>","<Introduced Date>","<Discontinued Date>" and "<Manufacturer>"
+    And select to submit the data to add new computer
+    Then I should see the "<Message>"
+
+    Examples: 
+
+  @happypath @2020feature @critical @core
+  Scenario Outline: Verify that user can add new computer to the database # NewComputer.feature:21
+    Given I navigate to the computer database app                         # MyStepdefs2.iNavigateToTheComputerDatabaseApp()
+    When I select "Add a new computer"                                    # MyStepdefs2.iSelect(String)
+    Then I land in page with heading "Add a New Computer"                 # MyStepdefs2.iLandInPageWithHeading(String)
+    And add new computer with "test","2001-01-01","2001-01-01" and "RCA"  # MyStepdefs2.addNewComputerWithAnd(String,String,String,String)
+    And select to submit the data to add new computer                     # MyStepdefs2.selectToSubmitTheDataToAddNewComputer()
+    Then I should see the "Required"                                      # MyStepdefs2.iShouldSeeTheMessage(String)
+
+  @validation
+  Scenario Outline: Verify that user cannot add new computer to the database if any fields are invalid         # NewComputer.feature:25
+    Given I navigate to the computer database app
+    When I select "Add a new computer"
+    Then I land in page with heading "Add a New Computer"
+    And add new computer with "<Computer Name>","<Introduced Date>","<Discontinued Date>" and "<Manufacturer>"
+    And select to submit the data to add new computer
+    Then I should see the "<Message>"
+
+    Examples: 
+
+  @2020feature @critical @validation @core
+  Scenario Outline: Verify that user cannot add new computer to the database if any fields are invalid # NewComputer.feature:37
+    Given I navigate to the computer database app                                                      # MyStepdefs2.iNavigateToTheComputerDatabaseApp()
+    When I select "Add a new computer"                                                                 # MyStepdefs2.iSelect(String)
+    Then I land in page with heading "Add a New Computer"                                              # MyStepdefs2.iLandInPageWithHeading(String)
+    And add new computer with "","","" and "RCA"                                                       # MyStepdefs2.addNewComputerWithAnd(String,String,String,String)
+    And select to submit the data to add new computer                                                  # MyStepdefs2.selectToSubmitTheDataToAddNewComputer()
+    Then I should see the "Required"                                                                   # MyStepdefs2.iShouldSeeTheMessage(String)
+
+  @2020feature @critical @validation @core
+  Scenario Outline: Verify that user cannot add new computer to the database if any fields are invalid # NewComputer.feature:38
+    Given I navigate to the computer database app                                                      # MyStepdefs2.iNavigateToTheComputerDatabaseApp()
+    When I select "Add a new computer"                                                                 # MyStepdefs2.iSelect(String)
+    Then I land in page with heading "Add a New Computer"                                              # MyStepdefs2.iLandInPageWithHeading(String)
+    And add new computer with "","11111111","" and "RCA"                                               # MyStepdefs2.addNewComputerWithAnd(String,String,String,String)
+    And select to submit the data to add new computer                                                  # MyStepdefs2.selectToSubmitTheDataToAddNewComputer()
+    Then I should see the "Date ('yyyy-MM-dd')"                                                        # MyStepdefs2.iShouldSeeTheMessage(String)
+
+  @2020feature @critical @validation @core
+  Scenario Outline: Verify that user cannot add new computer to the database if any fields are invalid # NewComputer.feature:39
+    Given I navigate to the computer database app                                                      # MyStepdefs2.iNavigateToTheComputerDatabaseApp()
+    When I select "Add a new computer"                                                                 # MyStepdefs2.iSelect(String)
+    Then I land in page with heading "Add a New Computer"                                              # MyStepdefs2.iLandInPageWithHeading(String)
+    And add new computer with "","","11111111" and "RCA"                                               # MyStepdefs2.addNewComputerWithAnd(String,String,String,String)
+    And select to submit the data to add new computer                                                  # MyStepdefs2.selectToSubmitTheDataToAddNewComputer()
+    Then I should see the "Date ('yyyy-MM-dd')"                                                        # MyStepdefs2.iShouldSeeTheMessage(String)
